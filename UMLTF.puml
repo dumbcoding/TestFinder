@@ -1,0 +1,195 @@
+@startuml
+class com.example.testfinder.TestAdapter {
+~ Context context
+~ List<Item> items
++ TestViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(TestViewHolder,int)
++ int getItemCount()
++ Bitmap StringToBitMap(String)
+- String getHtmlData(String)
++ void setImageWebView(TestViewHolder,Bitmap)
+}
+class com.example.testfinder.RetrofitService {
+- {static} String baseUrl
+- {static} Retrofit retrofit
++ {static} Retrofit getInstance()
+}
+class com.example.testfinder.utility.RequestPermission {
+- Activity activity
++ void requestPermissions(Activity,String[])
+- boolean isPermissionGranted(Context,String)
+}
+class com.example.testfinder.utility.Constants {
++ {static} String IS_LOGGED_IN
++ {static} String USER_ID
++ {static} String USER_SCHOOL
+}
+class com.example.testfinder.item.ItemsApiService {
+- {static} ItemsApi itemsApi
++ {static} ItemsApi getInstance()
+}
+class com.example.testfinder.activity.AttachTestActivity {
+- TextRecognizer textRecognizer
+- String DATA_PATH
+~ boolean attached
+- ActivityAttachTestBinding binding
+- Bitmap chosen_bp
+~ SharedPreferences sharedPreferences
+~ SharedPreferences sharedPreferences_school
+~ ActivityResultLauncher<Intent> launchSomeActivity
+# void onCreate(Bundle)
+- void postData()
+- Bitmap checkBitmapSize(Bitmap)
+- void imageChooser()
++ String BitMapToString(Bitmap)
++ boolean isValidAttach()
+- void showToast(String)
+- void startTextExtraction(Bitmap)
+- void updateUI(String)
+}
+class com.example.testfinder.activity.AttachTestActivity$ExtractTextRunnable {
+- Bitmap bitmap
++ void run()
+}
+class com.example.testfinder.item.Item {
+~ String name
+~ String description
+~ String subject
+~ String image1
+~ String image2
+~ String image3
+~ String recognized_text
+~ int grade
+~ long user_id
+~ int school
++ long getUser_id()
++ void setUser_id(long)
++ String getName()
++ String getSubject()
++ void setSubject(String)
++ void setName(String)
++ String getDescription()
++ void setDescription(String)
++ String getImage1()
++ void setImage1(String)
++ String getImage2()
++ void setImage2(String)
++ String getImage3()
++ void setImage3(String)
++ int getGrade()
++ void setGrade(int)
++ String getRecognized_text()
++ void setRecognized_text(String)
++ int getSchool()
++ void setSchool(int)
+}
+class com.example.testfinder.TestViewHolder {
+~ TextView testDescription
+~ CustomWebView webView
+}
+class com.example.testfinder.activity.RegisterActivity {
+- ActivityRegisterBinding binding
+~ SharedPreferences sharedPreferences
+# void onCreate(Bundle)
+- void register()
+- void addUserId(long)
+- Boolean isValidSignUp()
+- void showToast(String)
+- void loading(Boolean)
+}
+class com.example.testfinder.activity.FiltersFragment {
+- CheckBox grade5
+- Spinner spinner_subjects
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ String getSelectedSpinnerItem()
++ List<Integer> getSelectedGrades()
+}
+interface com.example.testfinder.item.ItemsApi {
+~ Call<List<Item>> getItemsBySchool(int)
+~ Call<Item> postItem(Item)
+}
+class com.example.testfinder.user.UserApiService {
+- {static} UserApi userApi
++ {static} UserApi getInstance()
+}
+interface com.example.testfinder.user.UserApi {
+~ Call<List<User>> getUsers()
+~ Call<User> findByEmail(String)
+~ Call<User> postUser(User)
+}
+class com.example.testfinder.user.User {
+~ Long id
+~ String name
+~ String password
+~ String email
++ Long getId()
++ String getName()
++ void setName(String)
++ String getPassword()
++ void setPassword(String)
++ String getEmail()
++ void setEmail(String)
+}
+class com.example.testfinder.activity.SettingsActivity {
+~ SharedPreferences sharedPreferences
+~ SharedPreferences sharedPreferences_id
+~ SharedPreferences sharedPreferences_school
+- ActivitySettingsBinding binding
+# void onCreate(Bundle)
+- void logOut()
++ void onItemSelected(AdapterView<?>,View,int,long)
++ void onNothingSelected(AdapterView<?>)
+}
+class com.example.testfinder.utility.CustomWebView {
+- GestureDetector gestureDetector
++ boolean onTouchEvent(MotionEvent)
+}
+class com.example.testfinder.utility.CustomWebView$GestureListener {
++ boolean onScroll(MotionEvent,MotionEvent,float,float)
+}
+class com.example.testfinder.activity.LogInActivity {
+- ActivityLogInBinding binding
+~ SharedPreferences sharedPreferences
+~ SharedPreferences sharedPreferences_id
+# void onCreate(Bundle)
+- void logIn()
+- void addUserId(long)
+- void loading(Boolean)
+- void saveData()
+- Boolean isValidSignIn()
+- void showToast(String)
+}
+class com.example.testfinder.utility.TextRecognizer {
+- {static} String TESSDATA
+- TessBaseAPI tessBaseApi
++ void copyTessDataFiles(String,String,Context)
++ void prepareTesseract(String,Context)
+- void prepareDirectory(String)
++ String extractText(Bitmap,String)
+}
+class com.example.testfinder.activity.MainActivity {
+- ActivityMainBinding binding
+~ SharedPreferences sharedPreferences_school
+- boolean isFragmentVisible
+- FiltersFragment filtersFragment
+# void onCreate(Bundle)
+- List<Item> getSelectedTests(List<Item>)
+- void requestPermissions()
+}
+
+
+com.example.testfinder.Adapter <|-- com.example.testfinder.TestAdapter
+androidx.appcompat.app.AppCompatActivity <|-- com.example.testfinder.activity.AttachTestActivity
+com.example.testfinder.activity.AttachTestActivity +.. com.example.testfinder.activity.AttachTestActivity$ExtractTextRunnable
+com.example.testfinder.activity.Runnable <|.. com.example.testfinder.activity.AttachTestActivity$ExtractTextRunnable
+com.example.testfinder.ViewHolder <|-- com.example.testfinder.TestViewHolder
+androidx.appcompat.app.AppCompatActivity <|-- com.example.testfinder.activity.RegisterActivity
+androidx.fragment.app.Fragment <|-- com.example.testfinder.activity.FiltersFragment
+com.example.testfinder.activity.OnItemSelectedListener <|.. com.example.testfinder.activity.SettingsActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.testfinder.activity.SettingsActivity
+android.webkit.WebView <|-- com.example.testfinder.utility.CustomWebView
+com.example.testfinder.utility.CustomWebView +.. com.example.testfinder.utility.CustomWebView$GestureListener
+com.example.testfinder.utility.SimpleOnGestureListener <|-- com.example.testfinder.utility.CustomWebView$GestureListener
+androidx.appcompat.app.AppCompatActivity <|-- com.example.testfinder.activity.LogInActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.testfinder.activity.MainActivity
+@enduml

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:overScrollMode="never"
+    android:padding="24sp"
+    android:scrollbars="none"
+    tools:context=".activity.LogInActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:scaleType="center"
+            android:layout_marginTop="64dp"
+            android:src="@drawable/app_icon"
+            android:background="@drawable/rounded_bg"
+            android:backgroundTint="?colorPrimary"/>
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40sp"
+            android:text="Welcome back!"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="?colorPrimaryVariant"/>
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40sp"
+            android:text="Log in to continue"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="?colorPrimaryVariant"/>
+        <EditText
+            android:id="@+id/inputEmail"
+            android:layout_width="match_parent"
+            android:layout_height="48sp"
+            android:layout_marginTop="40sp"
+            android:hint="Email"
+            android:imeOptions="actionNext"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress"
+            android:paddingStart="16sp"
+            android:paddingEnd="16sp"
+            android:textSize="13sp"
+            android:background="@drawable/editxt_bg"
+            android:backgroundTint="?colorOnSecondary"/>
+        <EditText
+            android:id="@+id/inputPassword"
+            android:layout_width="match_parent"
+            android:layout_height="48sp"
+            android:layout_marginTop="16sp"
+            android:hint="Password"
+            android:imeOptions="actionDone"
+            android:importantForAutofill="no"
+            android:inputType="textPassword"
+            android:paddingStart="16sp"
+            android:paddingEnd="16sp"
+            android:textSize="13sp"
+            android:background="@drawable/editxt_bg"
+            android:backgroundTint="?colorOnSecondary"/>
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:id="@+id/buttonSignIn"
+            android:layout_marginTop="20sp"
+            android:text="Sign In"
+            android:textColor="?colorOnPrimary"
+            android:backgroundTint="?colorSecondary"
+            android:textStyle="bold"
+            app:cornerRadius="12sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="?colorPrimaryVariant"
+            android:id="@+id/createNewAccount"
+            android:textSize="16sp"
+            android:layout_marginTop="30sp"
+            android:text="I don't have an account"
+            />
+
+
+    </LinearLayout>
+
+
+
+
+</ScrollView>
