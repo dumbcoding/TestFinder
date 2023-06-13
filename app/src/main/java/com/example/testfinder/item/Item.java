@@ -1,6 +1,7 @@
 package com.example.testfinder.item;
 
 public class Item {
+    Long id;
     String name;
     String description;
     String subject;
@@ -12,7 +13,8 @@ public class Item {
     long user_id;
     int school;
 
-    public Item(String name, String description,String subject, String image1, String image2, String image3, int grade, String recognized_text, long user_id, int school) {
+    public Item(Long id, String name, String description,String subject, String image1, String image2, String image3, int grade, String recognized_text, long user_id, int school) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.subject = subject;
@@ -23,6 +25,14 @@ public class Item {
         this.recognized_text = recognized_text;
         this.user_id = user_id;
         this.school = school;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public long getUser_id() {

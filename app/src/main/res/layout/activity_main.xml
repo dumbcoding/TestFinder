@@ -41,8 +41,19 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="14dp"
             android:textColor="?colorPrimaryVariant"/>
+        <ImageButton
+            android:id="@+id/profile"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_profile"
+            android:background="@drawable/button_shadow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_mainpage"
+            app:tint="?colorPrimaryVariant" />
         <FrameLayout
-            android:id="@+id/fragmentContainer"
+            android:id="@+id/FiltersFragmentContainer"
             app:layout_constraintTop_toBottomOf="@id/drop"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_width="wrap_content"
@@ -59,7 +70,7 @@
             android:paddingHorizontal="13dp"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fragmentContainer"
+            app:layout_constraintTop_toBottomOf="@id/FiltersFragmentContainer"
             app:layout_constraintBottom_toTopOf="@id/resultRecyclerView" />
 
         <Button
@@ -71,7 +82,7 @@
             android:backgroundTint="?colorSecondary"
             app:layout_constraintBottom_toTopOf="@+id/resultRecyclerView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragmentContainer" />
+            app:layout_constraintTop_toBottomOf="@+id/FiltersFragmentContainer" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/resultRecyclerView"
@@ -84,6 +95,24 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/getresult" />
+        <View
+            android:id="@+id/comments_close_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.3"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"/>
+        <FrameLayout
+            android:id="@+id/CommentsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.7"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"/>
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -110,7 +139,7 @@
             android:layout_marginBottom="24dp" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/Log_out"
+            android:id="@+id/settings"
             android:layout_marginStart="24dp"
             android:layout_marginBottom="24dp"
             android:layout_width="wrap_content"

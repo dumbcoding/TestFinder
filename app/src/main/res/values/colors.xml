@@ -8,11 +8,16 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#404040</color>
-    <color name="light_grey">#a4a4a3</color>
-    <color name="red">#FF0000 </color>
-    <color name="transparent">#00000000 </color>
+    <color name="light_grey">#CFCFCA</color>
+    <color name="red">#FF0000</color>
+    <color name="transparent">#00000000</color>
     <color name="main_blue">#9999FF</color>
     <color name="dark_blue">#0033FF</color>
     <color name="background_blue">#99CCFF</color>
     <color name="blue_text">#D5DDF1</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_blue_900">#FF01579B</color>
+    <color name="light_blue_A200">#FF40C4FF</color>
+    <color name="light_blue_A400">#FF00B0FF</color>
+    <color name="black_overlay">#66000000</color>
 </resources>

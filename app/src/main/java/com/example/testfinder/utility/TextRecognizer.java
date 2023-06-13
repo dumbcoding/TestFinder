@@ -78,7 +78,7 @@ public class TextRecognizer {
     }
 
 
-    public String extractText(Bitmap bitmap, String DATA_PATH) {
+    public String extractText(Bitmap bitmap, String DATA_PATH, String lang) {
         try {
             tessBaseApi = new TessBaseAPI();
         } catch (Exception e) {
@@ -88,7 +88,7 @@ public class TextRecognizer {
             }
         }
 
-        tessBaseApi.init(DATA_PATH, "rus");
+        tessBaseApi.init(DATA_PATH, lang);
         tessBaseApi.setVariable(TessBaseAPI.VAR_CHAR_BLACKLIST, ("\\\";'_/#$%@><-«»-„°“|~`*[]{}&‛‘’〝＂,.!?›‹’ \\\""));
 
         tessBaseApi.setImage(bitmap);

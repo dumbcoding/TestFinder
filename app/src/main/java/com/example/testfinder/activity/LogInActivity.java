@@ -84,7 +84,7 @@ public class LogInActivity extends AppCompatActivity {
     //save user id to shared preferences
     private void addUserId(long id) {
         sharedPreferences_id = getSharedPreferences(Constants.USER_ID, MODE_PRIVATE);
-        SharedPreferences.Editor editor1 = sharedPreferences.edit();
+        SharedPreferences.Editor editor1 = sharedPreferences_id.edit();
         editor1.putLong(Constants.USER_ID, id);
         editor1.apply();
     }

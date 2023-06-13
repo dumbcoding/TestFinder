@@ -14,7 +14,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
@@ -67,10 +66,22 @@ public class AttachTestActivity extends AppCompatActivity {
         binding.btnBack.setOnClickListener(v->onBackPressed());
 
         binding.recognizetext.setOnClickListener(v->{
+            int selectedId = binding.langSelect.getCheckedRadioButtonId();
+            String lang;
+            if (selectedId == binding.eng.getId()) {
+                lang = "eng";
+            } else if (selectedId == binding.rus.getId()) {
+                lang = "rus";
+            }
+            else{
+                lang = "rus";
+            }
             textRecognizer.prepareTesseract(DATA_PATH, getApplicationContext());
             binding.progressRecognition.setVisibility(View.VISIBLE);
             binding.upload.setVisibility(View.INVISIBLE);
-            startTextExtraction(chosen_bp);
+            startTextExtraction(chosen_bp, lang);
+            binding.recognizetext.setVisibility(View.INVISIBLE);
+            binding.langSelect.setVisibility(View.INVISIBLE);
         });
 
         String[] subjects = {"Maths", "History", "Russian", "Biology", "Physics", "Chemistry", "Informatics","Social Science", "English"};
@@ -93,7 +104,7 @@ public class AttachTestActivity extends AppCompatActivity {
 
         sharedPreferences_school = getSharedPreferences(Constants.USER_SCHOOL, MODE_PRIVATE);
         int user_school = sharedPreferences_school.getInt(Constants.USER_SCHOOL, 11);
-        Item item = new Item(inputName, inputDescription,subject, image,null,null, grade, recognized_text, user_id, user_school);
+        Item item = new Item(null, inputName, inputDescription,subject, image,null,null, grade, recognized_text, user_id, user_school);
         Call<Item> call = ItemsApiService.getInstance().postItem(item);
         binding.photo.setVisibility(View.GONE);
         binding.inputName.setVisibility(View.GONE);
@@ -105,6 +116,7 @@ public class AttachTestActivity extends AppCompatActivity {
         binding.spinnerSubjects.setVisibility(View.GONE);
         binding.textSubject.setVisibility(View.GONE);
         binding.btnBack.setVisibility(View.GONE);
+        binding.langSelect.setVisibility(View.GONE);
         binding.textAddtest.setVisibility(View.GONE);
         binding.progressBar.setVisibility(View.VISIBLE);
         call.enqueue(new Callback<Item>() {
@@ -158,6 +170,7 @@ public class AttachTestActivity extends AppCompatActivity {
                         binding.addPhoto.setVisibility(View.GONE);
                         binding.photo.setVisibility(View.VISIBLE);
                         binding.recognizetext.setVisibility(View.VISIBLE);
+                        binding.langSelect.setVisibility(View.VISIBLE);
                         binding.photo.setImageBitmap(selectedImageBitmap);
                         chosen_bp = selectedImageBitmap;
                         attached = true;
@@ -196,19 +209,21 @@ public class AttachTestActivity extends AppCompatActivity {
     //second thread for image recognition
     private class ExtractTextRunnable implements Runnable {
         private Bitmap bitmap;
+        private String lang;
 
-        public ExtractTextRunnable(Bitmap bitmap) {
+        public ExtractTextRunnable(Bitmap bitmap, String lang) {
             this.bitmap = bitmap;
+            this.lang = lang;
         }
 
         @Override
         public void run() {
-            String extractedText = textRecognizer.extractText(bitmap, DATA_PATH);
+            String extractedText = textRecognizer.extractText(bitmap, DATA_PATH, lang);
             runOnUiThread(() -> updateUI(extractedText));
         }
     }
 
-    private void startTextExtraction(Bitmap bitmap) {
+    private void startTextExtraction(Bitmap bitmap, String lang) {
         //a ThreadPoolExecutor configuration
         ThreadPoolExecutor executor = new ThreadPoolExecutor(
                 1, // corePoolSize
@@ -218,7 +233,7 @@ public class AttachTestActivity extends AppCompatActivity {
                 new LinkedBlockingQueue<>() // workQueue
         );
 
-        executor.execute(new ExtractTextRunnable(bitmap));
+        executor.execute(new ExtractTextRunnable(bitmap, lang));
         executor.shutdown();
     }
 
@@ -227,6 +242,8 @@ public class AttachTestActivity extends AppCompatActivity {
         binding.recognizedText.setText(extractedText);
         binding.recognizedText.setVisibility(View.VISIBLE);
         binding.progressRecognition.setVisibility(View.INVISIBLE);
+        binding.recognizetext.setVisibility(View.VISIBLE);
+        binding.langSelect.setVisibility(View.VISIBLE);
         binding.upload.setVisibility(View.VISIBLE);
     }
 }
