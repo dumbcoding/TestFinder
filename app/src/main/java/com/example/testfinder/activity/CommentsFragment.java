@@ -13,8 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
-import com.example.testfinder.CommentsAdapter;
+import com.example.testfinder.CommentUpdateRunnable;
+import com.example.testfinder.adapter.CommentsAdapter;
 import com.example.testfinder.R;
 import com.example.testfinder.comment.Comment;
 import com.example.testfinder.comment.CommentApiService;
@@ -32,6 +34,8 @@ public class CommentsFragment extends Fragment {
     RecyclerView CommentsRecycler;
     EditText input_message;
     ImageView send_message;
+    private CommentUpdateRunnable commentUpdateRunnable;
+    private Thread commentUpdateThread;
     public CommentsFragment() {
         // Required empty public constructor
     }
@@ -61,8 +65,7 @@ public class CommentsFragment extends Fragment {
             CommentApiService.getInstance().postComment(comment).enqueue(new Callback<Comment>() {
                 @Override
                 public void onResponse(@NonNull Call<Comment> call, @NonNull Response<Comment> response) {
-                    commentsList.add(new Comment(null, user_id, null, item_id, text));
-                    CommentsRecycler.setAdapter(new CommentsAdapter(getContext(), commentsList));
+                    Toast.makeText(getContext(), "Loading...", Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
@@ -71,8 +74,19 @@ public class CommentsFragment extends Fragment {
                 }
             });
         });
+        commentUpdateRunnable = new CommentUpdateRunnable(item_id, CommentsRecycler, getContext());
+        commentUpdateThread = new Thread(commentUpdateRunnable);
+        commentUpdateThread.start();
 
         return view;
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        // Stop the comment update thread when the fragment is destroyed
+        commentUpdateRunnable.stop();
+        commentUpdateThread.interrupt();
     }
 
 }

@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.Manifest;
 import android.content.Intent;
@@ -19,7 +18,7 @@ import com.example.testfinder.utility.Constants;
 import com.example.testfinder.item.Item;
 import com.example.testfinder.item.ItemsApiService;
 import com.example.testfinder.utility.RequestPermission;
-import com.example.testfinder.TestAdapter;
+import com.example.testfinder.adapter.TestAdapter;
 import com.example.testfinder.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;

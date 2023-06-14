@@ -1,4 +1,4 @@
-package com.example.testfinder;
+package com.example.testfinder.viewholder;
 
 import android.view.View;
 import android.widget.ImageButton;
@@ -8,11 +8,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.testfinder.R;
+
 
 public class TestProfileViewHolder extends RecyclerView.ViewHolder {
-    TextView testProfileDescription, testProfileName, testProfileGrade;
-    ImageView imageView;
-    ImageButton delete_test;
+    public TextView testProfileDescription;
+    public TextView testProfileName;
+    public TextView testProfileGrade;
+    public ImageView imageView;
+    public ImageButton delete_test;
     public TestProfileViewHolder(@NonNull View itemView) {
         super(itemView);
         testProfileName = itemView.findViewById(R.id.testProfileName);

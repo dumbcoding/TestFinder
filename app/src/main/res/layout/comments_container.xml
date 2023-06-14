@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginStart="8dp"
-        android:text="NSBFdsfsdfH"
+        android:text=""
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/ic_user"
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:layout_marginStart="8dp"
-        android:text="YOUr dhfsdhfjsdkfhvf"
+        android:text=""
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@id/ic_user"
         app:layout_constraintTop_toBottomOf="@id/text_user_name"/>

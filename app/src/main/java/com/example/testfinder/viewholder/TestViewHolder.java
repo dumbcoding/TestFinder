@@ -1,4 +1,4 @@
-package com.example.testfinder;
+package com.example.testfinder.viewholder;
 
 import android.view.View;
 import android.widget.ImageView;
@@ -7,12 +7,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.testfinder.R;
 import com.example.testfinder.utility.CustomWebView;
 
 public class TestViewHolder extends RecyclerView.ViewHolder {
-    TextView testDescription, testName, testGrade, textUserName;
-    CustomWebView webView;
-    ImageView comments_btn;
+    public TextView testDescription;
+    public TextView testName;
+    public TextView testGrade;
+    public TextView textUserName;
+    public CustomWebView webView;
+    public ImageView comments_btn;
     public TestViewHolder(@NonNull View itemView) {
         super(itemView);
         testName = itemView.findViewById(R.id.testName);

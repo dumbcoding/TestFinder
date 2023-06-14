@@ -1,5 +1,5 @@
 @startuml
-class com.example.testfinder.TestAdapter {
+class com.example.testfinder.adapter.TestAdapter {
 ~ Context context
 ~ List<Item> items
 + TestViewHolder onCreateViewHolder(ViewGroup,int)
@@ -83,7 +83,7 @@ class com.example.testfinder.item.Item {
 + int getSchool()
 + void setSchool(int)
 }
-class com.example.testfinder.TestViewHolder {
+class com.example.testfinder.viewholder.TestViewHolder {
 ~ TextView testDescription
 ~ CustomWebView webView
 }
@@ -178,11 +178,11 @@ class com.example.testfinder.activity.MainActivity {
 }
 
 
-com.example.testfinder.Adapter <|-- com.example.testfinder.TestAdapter
+com.example.testfinder.Adapter <|-- com.example.testfinder.adapter.TestAdapter
 androidx.appcompat.app.AppCompatActivity <|-- com.example.testfinder.activity.AttachTestActivity
 com.example.testfinder.activity.AttachTestActivity +.. com.example.testfinder.activity.AttachTestActivity$ExtractTextRunnable
 com.example.testfinder.activity.Runnable <|.. com.example.testfinder.activity.AttachTestActivity$ExtractTextRunnable
-com.example.testfinder.ViewHolder <|-- com.example.testfinder.TestViewHolder
+com.example.testfinder.ViewHolder <|-- com.example.testfinder.viewholder.TestViewHolder
 androidx.appcompat.app.AppCompatActivity <|-- com.example.testfinder.activity.RegisterActivity
 androidx.fragment.app.Fragment <|-- com.example.testfinder.activity.FiltersFragment
 com.example.testfinder.activity.OnItemSelectedListener <|.. com.example.testfinder.activity.SettingsActivity

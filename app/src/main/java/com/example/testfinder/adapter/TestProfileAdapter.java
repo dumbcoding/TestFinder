@@ -1,4 +1,4 @@
-package com.example.testfinder;
+package com.example.testfinder.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -13,6 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.testfinder.R;
+import com.example.testfinder.viewholder.TestProfileViewHolder;
 import com.example.testfinder.item.Item;
 import com.example.testfinder.item.ItemsApiService;
 

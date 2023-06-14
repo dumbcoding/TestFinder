@@ -1,6 +1,5 @@
-package com.example.testfinder;
+package com.example.testfinder.adapter;
 
-import android.app.Application;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.testfinder.R;
+import com.example.testfinder.viewholder.TestViewHolder;
 import com.example.testfinder.activity.CommentsFragment;
 import com.example.testfinder.activity.ProfileFragment;
 import com.example.testfinder.comment.Comment;

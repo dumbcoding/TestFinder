@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.testfinder.R;
-import com.example.testfinder.TestProfileAdapter;
+import com.example.testfinder.adapter.TestProfileAdapter;
 import com.example.testfinder.item.Item;
 import com.example.testfinder.item.ItemsApiService;
 import com.example.testfinder.user.UserApiService;

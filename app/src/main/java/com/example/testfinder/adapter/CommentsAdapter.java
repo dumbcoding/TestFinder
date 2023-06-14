@@ -1,4 +1,4 @@
-package com.example.testfinder;
+package com.example.testfinder.adapter;
 
 import android.content.Context;
 import android.util.Log;
@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.testfinder.viewholder.CommentsViewHolder;
+import com.example.testfinder.R;
 import com.example.testfinder.comment.Comment;
 import com.example.testfinder.user.UserApiService;
 
